@@ -66,7 +66,7 @@ SELECT nif_artista, atracciones_artistas.fecha_inicio as fecha_inicio, ganancias
 FROM atracciones_artistas INNER JOIN atracciones
 					ON (atracciones_artistas.nombre_atraccion = atracciones.nombre)
 WHERE atracciones.fecha_inicio IS NOT NULL
-ORDER BY atracciones.nombre;
+ORDER BY atracciones.nombre ASC;
 
 /*
 -- 6.- Muestra los animales con la pista en la que actuan y su aforo pero de solo los animales que 
@@ -77,7 +77,7 @@ SELECT animales.nombre AS nombre_animal, pistas.nombre as nombre_pista, aforo
 FROM animales INNER JOIN pistas
 					ON (animales.nombre_pista = pistas.nombre)
 WHERE animales.anhos BETWEEN 2 AND 5
-ORDER BY animales.nombre;             
+ORDER BY animales.nombre ASC;             
 
 /*
 -- 7.- Muestra las atracciones que hayan comenzado a partir del año 2000(incluido) o que todavia
@@ -87,14 +87,14 @@ no se hayan estrenado
 SELECT  nombre, fecha_inicio
 FROM atracciones 
 WHERE fecha_inicio > "2000-01-01" OR fecha_inicio IS NULL
-ORDER BY nombre;
+ORDER BY nombre ASC;
 
 -- 8.- Muestra los animales junto con las atracciones así como las ganancias de dichas atracciones
 
 SELECT animales.nombre as nombre_animales, atracciones.nombre as nombre_atraccion, ganancias
 FROM animales INNER JOIN atracciones
 					ON (animales.nombre_atraccion = atracciones.nombre)
-ORDER BY animales.nombre;                    
+ORDER BY animales.nombre ASC;                    
                     
 
 
