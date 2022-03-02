@@ -11,7 +11,8 @@ ORDER BY nombre_atraccion;
 SELECT distinct count(*) as num_empleados, nif_jefe
 FROM artistas
 WHERE nif_jefe IS NOT NULL
-GROUP BY nif;
+GROUP BY nif
+ORDER BY nif_jefe ASC;
 
 -- 3.- De cuantos empleados dispone cada uno de los jefes (indicar nombre y apellidos de los jefes)
 
@@ -25,7 +26,8 @@ ORDER BY jefes.nombre;
 
 SELECT count(*) as num_veces
 FROM atraccion_dia
-WHERE ganancias > 20000 AND year(fecha)=2000;
+WHERE ganancias > 20000 AND year(fecha)=2000
+ORDER BY ganancias DESC;
 
 /*
 -- 5.- Obtén en cuantas atracciones distintas esta actuando cada artista, mostrando su nombre y apellidos
@@ -39,7 +41,8 @@ FROM atracciones_artistas INNER JOIN artistas
 				ON (atracciones.nombre = atracciones_artistas.nombre_atraccion)
 WHERE fecha_fin IS NULL
 GROUP BY artistas.nombre
-HAVING SUM(atracciones.ganancias) > 50000;
+HAVING SUM(atracciones.ganancias) > 50000
+ORDER BY artistas.nombre ASC;
 
 
 
@@ -50,12 +53,14 @@ FROM artistas INNER JOIN atracciones_artistas
 				ON(atracciones_artistas.nombre_atraccion = atracciones.nombre)
 WHERE fecha_fin IS NULL
 GROUP BY artistas.nif
-HAVING SUM(atracciones.ganancias) > 50000;
+HAVING SUM(atracciones.ganancias) > 50000
+ORDER BY artistas.nif;
 
 -- 6.- Muestra el mayor peso y el menor peso
 
 SELECT MAX(peso), MIN(peso)
-FROM animales;
+FROM animales
+ORDER BY peso;
 
 -- 7.- Muestra el peso medio de los animales que hayan actuado en pistas con un aforo entre 200 y 500
 
@@ -74,13 +79,14 @@ por año superior a 40000
 SELECT *
 FROM atracciones
 GROUP BY year(fecha_inicio)
-HAVING sum(ganancias) > 40000;
+HAVING sum(ganancias) > 40000
+ORDER BY fecha ASC;
 
 SELECT YEAR(fecha) as año,COUNT(*) as NumAtracciones
 FROM ATRACCION_DIA
 GROUP BY YEAR(fecha)
 HAVING SUM(ganancias) > 40000
-ORDER BY año;
+ORDER BY año ASC;
 
 /*
 -- 9.- Muestra cuantos tipos de animales tenemos en el circo, que trabajen en las pistas LATERAL1 
@@ -101,7 +107,8 @@ ORDER BY tipo ASC;
 SELECT nombre_atraccion, count(*) as num_veces_año
 FROM atraccion_dia
 WHERE year(fecha)= 2000
-GROUP BY nombre_atraccion;
+GROUP BY nombre_atraccion
+ORDER BY nombre_atraccion ASC;
 
 /*
 -- 11.- Muestra por cada atraccion, la fecha de inicio de la misma y cuantos espectadores
@@ -112,7 +119,8 @@ SELECT atracciones.nombre,atracciones.fecha_inicio, atracciones.ganancias, SUM(n
 FROM atracciones INNER JOIN atraccion_dia
 					ON (atracciones.nombre = atraccion_dia.nombre_atraccion)
 WHERE atracciones.ganancias > 40000 AND year(fecha) BETWEEN 1999 AND 2002  
-GROUP BY atracciones.nombre;
+GROUP BY atracciones.nombre
+ORDER BY atracciones.nombre ASC;
 
 
 
